@@ -50,8 +50,8 @@ const getBookIndex = (book) => {
     return BOOKS.findIndex(book => book.id === Number(id));
 }
 
-let updateBook = (book) => {    
-    const bookIndex = getBookIndex(book.id)
+let updateBook = (id, book) => {    
+    const bookIndex = getBookIndex(id)
     const newAllBooks = [...BOOKS]
     newAllBooks[bookIndex] = book
     BOOKS = newAllBooks
@@ -74,4 +74,4 @@ const deleteBook = (id) => {
     return book;
 }
 
-export default {getAllBooks, getBookById, getBookIndex, updateBook, createBook, deleteBook}
+export default {getAllBooks, getBookById, getBookIndex, updateBook, createBook, deleteBook, getNextID}

@@ -1,4 +1,4 @@
-import booksService from "../services/books-service";
+import booksService from "../services/books-service.js";
 
 let getAllBooks = (req, res) => {
   let limit = req.query.limit || 10;
@@ -9,7 +9,7 @@ let getAllBooks = (req, res) => {
   if (offset < 0) {
     offset = 0;
   }
-  books = booksService.getAllBooks(offset, limit);
+  const books = booksService.getAllBooks(offset, limit);
   res.json(books);
 };
 
@@ -69,7 +69,8 @@ let upsertBook = (req, res) => {
   }
 
   if (book) {
-    booksService.updateBook(book);
+    let id = booksService.getNextID();
+    booksService.updateBook(id, book);
   } else {
     booksService.createBook(book);
   }
@@ -94,7 +95,7 @@ let modifyBook = (req, res) => {
     ...(score && { score }),
   };
   const newBook = { ...book, ...definedParams };
-  booksService.updateBook(newBook);
+  booksService.updateBook(id, newBook);
   res.json(newBook);
 };
 

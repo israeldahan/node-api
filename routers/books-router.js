@@ -1,12 +1,8 @@
-import { Router } from "express";
+import express from "express";
 
 import booksController from "../controllers/books-controller.js";
 
-Router.get("/", (req, res) => {
-    res.send("Hello World!");
-    }
-);
-
+const Router = express.Router();
 
 Router.get("/", booksController.getAllBooks);
 Router.get("/:id", booksController.getBookById);
