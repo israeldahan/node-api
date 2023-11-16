@@ -166,6 +166,7 @@ app.delete("/books/:id", (req, res) => {
         res.status(400).send("Missing URL parameter: id");
     }
     const book = BOOKS.find(book => book.id === Number(id));
+    const bookIndex = BOOKS.indexOf(book);
     if (!book) {
         res.status(404).send("Book not found");
     }
