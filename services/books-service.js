@@ -46,7 +46,7 @@ const getBookById = (id) => {
     return BOOKS.find(book => book.id === Number(id));
 }
 
-const getBookIndex = (book) => {
+const getBookIndex = (id) => {
     return BOOKS.findIndex(book => book.id === Number(id));
 }
 

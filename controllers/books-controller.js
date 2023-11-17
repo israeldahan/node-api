@@ -1,5 +1,5 @@
 import booksService from "../services/books-service.js";
-
+import fs from "fs";
 let getAllBooks = (req, res) => {
   let limit = req.query.limit || 10;
   let offset = req.query.offset || 0;
@@ -67,9 +67,8 @@ let upsertBook = (req, res) => {
   if (!book.score) {
     res.status(400).send("Missing book score");
   }
-
-  if (book) {
-    let id = booksService.getNextID();
+  const oldBook = booksService.getBookById(id);
+  if (oldBook) {
     booksService.updateBook(id, book);
   } else {
     booksService.createBook(book);
